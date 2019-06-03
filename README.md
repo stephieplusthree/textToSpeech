@@ -109,3 +109,9 @@ step 10
 node .
 
 open explorer
+
+open another terminal and start mongodb server......mongod
+
+open another terminal and enter mongo
+
+type .. show dbs.. in terminal to print out databases

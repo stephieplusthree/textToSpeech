@@ -2,27 +2,115 @@
 
 create new ionic app in client folder with this command...............ionic start textToSpeech tabs --type=ionic-angular
 
-step 1: home.html
-Go to ionic framework and look up input--- we want inline input. Nest the copied text into the <ion-content> tag. Make sure ion-button is added to copied text and floating into the ion-label. Create a click event with a class name of signIn. Add #password and #username to <ion-input>
+============start of login ==============================
+step 1: home.html create login page
+Go to ionic framework and look up input. Create two buttons ofr login and register. 
+
+<ion-content padding center text-center>
+  <ion-title>Text to Speech</ion-title>
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>  
+  
+  <button ion-button full (click)="login()">Log In</button>
+  <button ion-button full (click)="register()">Register</button>
+
+</ion-content>
 
 step 2: home.ts
-Create a action named signIn() that console.log both uname and password. Import ViewChild. Declare the variables named uname and password and set that to the ViewChild. Go to browser and enter user name and password. What you entered in the browser will get console log out on the backend. 
+import { Component } from '@angular/core';
+import { NavController, AlertController } from 'ionic-angular';
+import { RegisterPage } from '../register/register';
 
-step 3: Generate 2 pages.... login and register
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+export class HomePage {
 
-step 4: copy home.html and paste text into login.html
+  username: string;
+  password: string;
 
-step 5: home.ts
-Import AlertController and add alertCtrl into constructor as a parameter.
-Create a function named signIn() that will take the user to the LoginPage.
-Create a function named register() that will take the user to the RegisterPage.
-Import both Login and Register page. 
+  constructor(public navCtrl: NavController) {
 
-step 6: app.module.ts
-import both LoginPage and RegisterPage
-add LoginPage and RegisterPage to declarations, entryComponenets
+  }
 
-step 7: home.scss
+
+  login() {
+    console.log("Username: "+ this.username);
+
+    console.log("Password: "+ this.password);
+  }
+
+  register() {
+    this.navCtrl.push(RegisterPage);
+  }
+
+}
+
+step 3: create a register page and add register to app.module.ts
+
+step 6: registration.html
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Register
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+      <ion-item>
+        <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input placeholder="Repeat password" type="password" [(ngModel)]="repass"></ion-input>
+        </ion-item>
+    </ion-list>  
+    
+    <button ion-button full (click)="register()">Register</button>
+  </ion-content>
+
+step 3 registration.ts
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+@IonicPage()
+@Component({
+  selector: 'page-register',
+  templateUrl: 'register.html',
+})
+export class RegisterPage {
+
+    username: string;
+    password: string;
+    repassword:string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
+  }
+
+  register() {
+    if(this.username.length==0 || this.password.length==0 || this.repassword.length==0) {
+      alert("Please fill all fields");
+    }
+  }
+}
+
+step 4: home.scss
 page-home {
     #topButtons {
         display: flex;
@@ -33,9 +121,9 @@ page-home {
     }
 }
 
-step 8: restart your front end server
+step 5: restart your front end server and test your app in the browser
 
-step 9: test app in browser
+step 6: sign in to ionicframework.com. 
 
 step 10: login.html
 copy text 
@@ -60,4 +148,12 @@ declare the variables user and password
 
 step 15: go to browser, test out if we get console logs
 
-step 16: home.html
+step 16: create a speech  page
+ionic g page speech
+
+step 17: home.html
+Change title to Speeches
+create a button
+
+step 18: speech.html
+create a button named "signInUser" that will take the user to the speech page.

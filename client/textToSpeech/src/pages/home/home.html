@@ -1,16 +1,15 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Text to Speech
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-  <div id="topButtons">
-    <button ion-button (click)="signIn()" item-left>Sign In</button>
-    <button ion-button (click)="register()" item-left>Registration</button>
-  </div> 
+<ion-content padding center text-center>
+  <ion-title>Text to Speech</ion-title>
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>  
+  
+  <button ion-button full (click)="login()">Log In</button>
+  <button ion-button full (click)="register()">Register</button>
 
 </ion-content>

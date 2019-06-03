@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "Name": {
+    "title": {
       "type": "string",
       "required": true
     }

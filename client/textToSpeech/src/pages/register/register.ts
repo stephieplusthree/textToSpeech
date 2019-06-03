@@ -1,13 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { userInfo } from 'os';
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,9 +8,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
-    @ViewChild('username') user;
-    @ViewChild('password') password;
-    
+    username: string;
+    password: string;
+    repassword:string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -26,7 +19,9 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  registerUser() {
-    console.log('Would register user with ', this.user.value, this.password.value);
+  register() {
+    if(this.username.length==0 || this.password.length==0 || this.repassword.length==0) {
+      alert("Please fill all fields");
+    }
   }
 }
